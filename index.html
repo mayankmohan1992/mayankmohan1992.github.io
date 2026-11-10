@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mayank Mohan — public data, made usable</title>
+<meta name="description" content="I build tools that make public data usable — and show where every number came from. India macro data from RBI's own tables, Jaipur's land and property registers, native Linux apps in Python and Rust.">
+<meta name="author" content="Mayank Mohan">
+<link rel="canonical" href="https://mayankmohan1992.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171b18'/%3E%3Cpath d='M16 44V20h5l11 15 11-15h5v24h-5V29l-11 15-11-15v15z' fill='%23f2efe9'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Mayank Mohan — public data, made usable">
+<meta property="og:description" content="38 RBI macro indicators rebuilt every morning by CI. Jaipur's RERA and master-plan registers, counted from the authority's own tables. Native Linux apps in Python and Rust.">
+<meta property="og:url" content="https://mayankmohan1992.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mayank Mohan — public data, made usable">
+<meta name="twitter:description" content="Tools that make public data usable, with every number traced to its source.">
+
+<style>
+  :root {
+    --bg: #f7f5f1;
+    --ink: #17181a;
+    --muted: #6a6b70;
+    --rule: #dcd8d0;
+    --card: #fffefb;
+    --accent: #8a4b1f;
+    --accent-soft: #f0e6db;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Iosevka", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121312;
+      --ink: #ece9e3;
+      --muted: #9a9b9e;
+      --rule: #2c2e2c;
+      --card: #191a19;
+      --accent: #e0a377;
+      --accent-soft: #2a2119;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem 6rem; }
+  a { color: inherit; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+
+  header { padding: 4.5rem 0 2.5rem; border-bottom: 1px solid var(--rule); }
+  h1 { font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 0.9rem; font-weight: 650; }
+  .lede { font-size: clamp(1.05rem, 2.2vw, 1.3rem); line-height: 1.5; max-width: 42rem; margin: 0 0 1.6rem; color: var(--ink); }
+  .lede em { font-style: normal; border-bottom: 2px solid var(--accent-soft); }
+  .meta { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.02em; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
+  .meta a { text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .meta a:hover { border-color: var(--accent); }
+
+  h2 { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); font-weight: 600; margin: 4rem 0 0; }
+
+  .work { display: block; padding: 1.9rem 0 2rem; border-bottom: 1px solid var(--rule); text-decoration: none; }
+  a.work:hover { background: transparent; }
+  .work-grid { display: grid; grid-template-columns: 1fr; gap: 0.5rem 2.5rem; }
+  @media (min-width: 47rem) { .work-grid { grid-template-columns: 10.5rem 1fr; } }
+  .when { font-family: var(--mono); font-size: 0.76rem; color: var(--muted); letter-spacing: 0.01em; padding-top: 0.35rem; }
+  .when b { display: block; color: var(--ink); font-weight: 600; font-size: 0.78rem; }
+  .work h3 { font-size: 1.22rem; margin: 0 0 0.45rem; letter-spacing: -0.01em; font-weight: 620; }
+  .work h3 a { text-decoration: none; }
+  .work h3 a:hover { color: var(--accent); }
+  .work p { margin: 0 0 0.8rem; color: var(--ink); max-width: 40rem; }
+  .facts { font-family: var(--mono); font-size: 0.77rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.3rem 0.55rem; margin: 0 0 0.85rem; }
+  .facts span { border: 1px solid var(--rule); border-radius: 2rem; padding: 0.12rem 0.6rem; background: var(--card); }
+  .links { font-size: 0.85rem; font-family: var(--mono); display: flex; flex-wrap: wrap; gap: 0.9rem; }
+  .links a { text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  .links a::after { content: " ↗"; color: var(--muted); font-size: 0.75em; }
+
+  .principles { margin-top: 1.4rem; display: grid; gap: 1.5rem; }
+  @media (min-width: 47rem) { .principles { grid-template-columns: repeat(3, 1fr); gap: 2.2rem; } }
+  .principles h4 { font-size: 0.98rem; margin: 0 0 0.3rem; font-weight: 620; }
+  .principles p { margin: 0; font-size: 0.93rem; color: var(--muted); line-height: 1.55; }
+
+  .also { margin-top: 1.3rem; padding-left: 1.1rem; border-left: 2px solid var(--accent-soft); }
+  .also p { margin: 0 0 0.6rem; font-size: 0.93rem; color: var(--muted); }
+  .also strong { color: var(--ink); font-weight: 600; }
+
+  footer { margin-top: 4rem; padding-top: 1.6rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
+  footer a { text-decoration: none; border-bottom: 1px solid var(--rule); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Mayank Mohan</h1>
+  <p class="lede">I build tools that make public data usable — and I show where <em>every number</em> came from. Mostly Python and Rust, mostly for India.</p>
+  <div class="meta">
+    <span>Jaipur, India</span>
+    <a href="https://github.com/mayankmohan1992">github.com/mayankmohan1992</a>
+    <a href="mailto:er.mayankmohan@gmail.com">er.mayankmohan@gmail.com</a>
+  </div>
+</header>
+
+<h2>Selected work</h2>
+
+<article class="work">
+  <div class="work-grid">
+    <div class="when"><b>Live · daily</b>2026 —<br>Python · CI</div>
+    <div>
+      <h3><a href="https://mayankmohan1992.github.io/india-macro-war-room/">India Macro War Room</a></h3>
+      <p>38 widely-watched Indian macro indicators, rebuilt from the Reserve Bank's own publications every
+        morning by a GitHub Actions job that then re-runs a verification gate — and refuses to publish a
+        table that came back short. Serves a one-screen dashboard and a keyless JSON/CSV API from static
+        files: no server, no cost, no signup.</p>
+      <div class="facts"><span>38 indicators</span><span>9,217 observations</span><span>12 RBI tables</span><span>16 provenance checks</span><span>MIT</span></div>
+      <div class="links">
+        <a href="https://mayankmohan1992.github.io/india-macro-war-room/">Dashboard</a>
+        <a href="https://github.com/mayankmohan1992/india-macro-war-room/blob/main/docs/API.md">API docs</a>
+        <a href="https://github.com/mayankmohan1992/india-macro-war-room">Source</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="work">
+  <div class="work-grid">
+    <div class="when"><b>Jaipur</b>2017 – 2026<br>Register audit</div>
+    <div>
+      <h3><a href="https://github.com/mayankmohan1992/jaipur-rera-2026">Jaipur RERA, 2017–2026</a></h3>
+      <p>Every real-estate project registered with Rajasthan's real-estate regulator in Jaipur district,
+        counted from the authority's own register — including the two different definitions of
+        <em>“lapsed”</em> the portal itself publishes, which quietly change the answer. Deck, data,
+        every endpoint and every caveat are in the repo.</p>
+      <div class="facts"><span>2,389 projects</span><span>328,469 units declared</span><span>10y of register</span></div>
+      <div class="links">
+        <a href="https://github.com/mayankmohan1992/jaipur-rera-2026/blob/main/deck/jaipur-rera-2026-linkedin.pdf">Deck (PDF)</a>
+        <a href="https://github.com/mayankmohan1992/jaipur-rera-2026/blob/main/docs/method.md">Method</a>
+        <a href="https://github.com/mayankmohan1992/jaipur-rera-2026">Source</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="work">
+  <div class="work-grid">
+    <div class="when"><b>Jaipur</b>2025 plan<br>GIS</div>
+    <div>
+      <h3><a href="https://github.com/mayankmohan1992/jaipur-mdp-2025-landuse">Jaipur master plan, by land use</a></h3>
+      <p>The city's Master Development Plan 2025 land-use fabric — 23,980 polygons across 32 categories,
+        from the state's GIS servers — reconciled into areas you can argue with: residential 39.8%,
+        green and open 30.9%. The external boundary is traced separately (2,772 km²) because the plan's
+        own total is 2,764 km².</p>
+      <div class="facts"><span>2,764 km²</span><span>23,980 polygons</span><span>32 categories</span></div>
+      <div class="links">
+        <a href="https://github.com/mayankmohan1992/jaipur-mdp-2025-landuse/blob/main/deck/jaipur-mdp-landuse-linkedin.pdf">Deck (PDF)</a>
+        <a href="https://github.com/mayankmohan1992/jaipur-mdp-2025-landuse/blob/main/docs/boundary-area.md">Boundary trace</a>
+        <a href="https://github.com/mayankmohan1992/jaipur-mdp-2025-landuse">Source</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="work">
+  <div class="work-grid">
+    <div class="when"><b>Jaipur</b>2013 – 2026<br>Satellite</div>
+    <div>
+      <h3><a href="https://github.com/mayankmohan1992/jaipur-nightlights-vnl">Jaipur at night, 2013–2026</a></h3>
+      <p>VIIRS night-lights radiance over the master-plan boundary, split into its 17 planning zones and
+        computed entirely server-side in Earth Engine. City glow is up 113% like-for-like since 2013 —
+        and the deck publishes the saturation caveat that argues against its own headline, plus the
+        step change in 2021 (9.5%/yr) that the average hides.</p>
+      <div class="facts"><span>+113% like-for-like</span><span>17 zones</span><span>14 yearly maps</span></div>
+      <div class="links">
+        <a href="https://github.com/mayankmohan1992/jaipur-nightlights-vnl/blob/main/deck/jaipur-nightlights-linkedin.pdf">Deck (PDF)</a>
+        <a href="https://github.com/mayankmohan1992/jaipur-nightlights-vnl/blob/main/docs/caveats.md">Caveats</a>
+        <a href="https://github.com/mayankmohan1992/jaipur-nightlights-vnl">Source</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="work">
+  <div class="work-grid">
+    <div class="when"><b>Linux desktop</b>Open source<br>Python · Qt 6</div>
+    <div>
+      <h3><a href="https://github.com/mayankmohan1992/cachyview">CachyView</a></h3>
+      <p>A native archive · PDF · image · text · SVG toolkit, built on Qt 6 and MuPDF rather than
+        Electron: sub-second start, no network calls, no telemetry. PDF mark-up is written back inside
+        the file on save; archive extraction is sandboxed.</p>
+      <div class="facts"><span>Qt 6 + MuPDF</span><span>offline by design</span><span>no Electron</span></div>
+      <div class="links">
+        <a href="https://github.com/mayankmohan1992/cachyview">Source</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="work">
+  <div class="work-grid">
+    <div class="when"><b>Linux desktop</b>Open source<br>Wayland · OCR</div>
+    <div>
+      <h3><a href="https://github.com/mayankmohan1992/cachyrecorder">CachyRecorder</a></h3>
+      <p>Search everything you have seen on your screen: capture, deduplicate, OCR and full-text index,
+        on KDE Plasma/Wayland. Measured rather than assumed — 10 MB an hour and 0.9% of one core, because
+        72% of capture ticks are identical frames and get dropped before OCR.</p>
+      <div class="facts"><span>10 MB/hour</span><span>0.9% of one core</span><span>FTS5 index</span></div>
+      <div class="links">
+        <a href="https://github.com/mayankmohan1992/cachyrecorder">Source</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<h2>How I work</h2>
+<div class="principles">
+  <div>
+    <h4>Every figure traced to its source</h4>
+    <p>Not a claim in a README: the War Room build compares its published numbers against the raw RBI
+      tables on every run — 16 checks — and fails if they disagree.</p>
+  </div>
+  <div>
+    <h4>Gates, not notes</h4>
+    <p>A short table fails the build instead of becoming a plausible-looking chart. Where a figure has
+      no second source (18 of 38 indicators), the dashboard says so rather than implying verification.</p>
+  </div>
+  <div>
+    <h4>Caveats next to the claim</h4>
+    <p>Each deck ships the caveat that weakens it — sensor saturation, spliced series, two definitions of
+      the same word. If the number cannot survive the caveat, it gets dropped.</p>
+  </div>
+</div>
+
+<h2>Also</h2>
+<div class="also">
+  <p><strong><a href="https://github.com/mayankmohan1992/arch-builds">arch-builds</a></strong> — a signed
+    x86-64-v4 pacman repository, built on GitHub Actions and consumed by a normal system update.</p>
+  <p><strong>Upstream</strong> — a fix merged into <a href="https://github.com/anefzaoui/misterdownloadmanager/pull/313">misterdownloadmanager</a>
+    (Rust), where the extension sent the video's own page instead of the media.</p>
+  <p><strong>In the workshop</strong> — a reader for Rajasthan's land records (khasra, jamabandi,
+    mutation register), and an Omarchy port to a Snapdragon Android device.</p>
+</div>
+
+<footer>
+  <span>Jaipur, India · +05:30</span>
+  <span>
+    <a href="https://github.com/mayankmohan1992">GitHub</a> ·
+    <a href="mailto:er.mayankmohan@gmail.com">Email</a>
+  </span>
+</footer>
+
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mayank Mohan",
+  "url": "https://mayankmohan1992.github.io/",
+  "email": "mailto:er.mayankmohan@gmail.com",
+  "jobTitle": "Software Engineer",
+  "address": { "@type": "PostalAddress", "addressLocality": "Jaipur", "addressCountry": "IN" },
+  "sameAs": ["https://github.com/mayankmohan1992"]
+}
+</script>
+</body>
+</html>
