@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mayank Mohan — public data, made usable</title>
-<meta name="description" content="I build tools that make public data usable — and show where every number came from. India macro data from RBI's own tables, Jaipur's land and property registers, native Linux apps in Python and Rust.">
+<meta name="description" content="I build tools that make public data usable — and show where every number came from. 45 Indian macro indicators from the RBI and MoSPI, Jaipur's land and property registers, native Linux apps in Python and Rust.">
 <meta name="author" content="Mayank Mohan">
 <link rel="canonical" href="https://mayankmohan1992.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171b18'/%3E%3Cpath d='M16 44V20h5l11 15 11-15h5v24h-5V29l-11 15-11-15v15z' fill='%23f2efe9'/%3E%3C/svg%3E">
 
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Mayank Mohan — public data, made usable">
-<meta property="og:description" content="38 RBI macro indicators rebuilt every morning by CI. Jaipur's RERA and master-plan registers, counted from the authority's own tables. Native Linux apps in Python and Rust.">
+<meta property="og:description" content="45 Indian macro indicators from the RBI and MoSPI, rebuilt every morning by CI. Jaipur's RERA and master-plan registers, counted from the authority's own tables. Native Linux apps in Python and Rust.">
 <meta property="og:url" content="https://mayankmohan1992.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mayank Mohan — public data, made usable">
@@ -78,7 +78,7 @@
   .work p { margin: 0 0 0.9rem; color: var(--ink); max-width: 40rem; text-wrap: pretty; }
   .nw { white-space: nowrap; }
   .facts { font-family: var(--mono); font-size: 0.77rem; color: var(--ink); opacity: 0.82; display: flex; flex-wrap: wrap; gap: 0.3rem 0.55rem; margin: 0 0 0.85rem; }
-  .facts span { border: 1px solid var(--rule); border-radius: 2rem; padding: 0.14rem 0.62rem; background: var(--card); }
+  .facts span { border: 1px solid var(--rule); border-radius: 2rem; padding: 0.14rem 0.56rem; background: var(--card); white-space: nowrap; }
   .links { font-size: 0.86rem; font-family: var(--mono); display: flex; flex-wrap: wrap; gap: 0.95rem; }
   .links a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   .links a::after { content: " ↗"; color: var(--muted); font-size: 0.75em; }
@@ -101,7 +101,7 @@
 
 <header>
   <h1>Mayank Mohan</h1>
-  <p class="lede">I build tools that make public data usable — and I show where <em>every number</em> came from. Mostly Python and Rust, mostly for India.</p>
+  <p class="lede">I build tools that make public data usable — and I show where <em>every number</em> came from. Indian macro data from the RBI and MoSPI, Jaipur's land and property registers, native Linux apps.</p>
   <div class="meta">
     <span>Jaipur, India</span>
     <a href="https://github.com/mayankmohan1992">github.com/mayankmohan1992</a>
@@ -116,11 +116,13 @@
     <div class="when"><b>Live · daily</b>2026 – present<br>Python · CI</div>
     <div>
       <h3><a href="https://mayankmohan1992.github.io/india-macro-war-room/"><span class="nw">India Macro War Room</span></a></h3>
-      <p>38 widely-watched Indian macro indicators, rebuilt from the Reserve Bank's own publications every
-        morning by a GitHub Actions job that then re-runs a verification gate — and refuses to publish a
-        table that came back short. Serves a one-screen dashboard and a keyless JSON/CSV API from static
-        files: no server, no cost, no signup.</p>
-      <div class="facts"><span>38 indicators</span><span>9,217 observations</span><span>12 RBI tables</span><span>16 provenance checks</span><span>MIT</span></div>
+      <p>45 Indian macro indicators, rebuilt every morning from two publishers — the RBI's DBIE tables and
+        MoSPI's API — by a GitHub Actions job that then re-runs a 19-check verification gate and refuses to
+        publish a table that came back short. It started as prices, rates and balances; it now carries the
+        real economy too: unemployment, labour-force participation, IIP and its capital-goods split, producer
+        prices, GVA. One dashboard, a keyless JSON/CSV API, and a chart you can embed elsewhere — all static
+        files, no server, no signup.</p>
+      <div class="facts"><span>45 indicators</span><span>32 charts</span><span>RBI + MoSPI</span><span>19 checks</span><span>9,325 points</span><span>MIT</span></div>
       <div class="links">
         <a href="https://mayankmohan1992.github.io/india-macro-war-room/">Dashboard</a>
         <a href="https://mayankmohan1992.github.io/india-macro-war-room/embed.html">Embed demo</a>
@@ -225,13 +227,13 @@
 <div class="principles">
   <div>
     <h4>Every figure traced to its source</h4>
-    <p>Not a claim in a README: the War Room build compares its published numbers against the raw RBI
-      tables on every run — 16 checks — and fails if they disagree.</p>
+    <p>Not a claim in a README: the War Room build compares its published numbers against the raw source
+      tables on every run — 19 checks, 19 passing — and fails if they disagree.</p>
   </div>
   <div>
     <h4>Gates, not notes</h4>
-    <p>A short table fails the build instead of becoming a plausible-looking chart. Where a figure has
-      no second source (18 of 38 indicators), the dashboard says so rather than implying verification.</p>
+    <p>A short table fails the build instead of becoming a plausible-looking chart. Where a figure has no
+      second source (20 of 45 indicators), the dashboard says so rather than implying verification.</p>
   </div>
   <div>
     <h4>Caveats next to the claim</h4>
